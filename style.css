@@ -1,0 +1,136 @@
+/* ============================================
+   个人主页样式 —— style.css
+   ============================================ */
+
+:root {
+    --bg-start: #f6f7fb;
+    --bg-end: #eef1f8;
+    --card-bg: #ffffff;
+    --text-main: #1f2329;
+    --text-sub: #5c6470;
+    --accent: #d16b86;
+    --accent-soft: #fdf2f5;
+    --line: #e6e9f0;
+    --radius: 20px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 20px;
+    background: linear-gradient(160deg, var(--bg-start) 0%, var(--bg-end) 100%);
+    color: var(--text-main);
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC",
+                 "Hiragino Sans GB", "Microsoft YaHei", "Segoe UI", sans-serif;
+    font-size: 16px;
+    line-height: 1.75;
+}
+
+/* ---------- 卡片主体 ---------- */
+
+.box {
+    width: 100%;
+    max-width: 560px;
+    background: var(--card-bg);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 48px 40px 44px;
+    text-align: center;
+    box-shadow: 0 12px 32px rgba(31, 35, 41, 0.07);
+}
+
+/* ---------- 照片 ---------- */
+
+.photo-frame {
+    position: relative;
+    width: 168px;
+    height: 168px;
+    margin: 0 auto 30px;
+}
+
+.avatar {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+    background: var(--accent-soft);
+    border: 3px solid var(--card-bg);
+    box-shadow: 0 0 0 1px var(--line), 0 8px 20px rgba(31, 35, 41, 0.1);
+}
+
+/* 照片加载失败时隐藏，露出下面的占位提示 */
+.avatar[hidden] {
+    display: none;
+}
+
+.photo-hint {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    border: 2px dashed #ccd2dd;
+    border-radius: 50%;
+    background: var(--accent-soft);
+    color: #98a0ae;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.photo-hint code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 11px;
+    color: var(--accent);
+}
+
+/* 照片正常显示时，占位提示不出现 */
+.avatar:not([hidden]) ~ .photo-hint {
+    display: none;
+}
+
+/* ---------- 文字 ---------- */
+
+h1 {
+    margin: 0 0 20px;
+    font-size: clamp(24px, 6vw, 30px);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+p {
+    margin: 0 0 12px;
+    color: var(--text-sub);
+    font-size: 15px;
+}
+
+p:last-child {
+    margin-bottom: 0;
+}
+
+/* ---------- 小屏适配 ---------- */
+
+@media (max-width: 480px) {
+    .box {
+        padding: 36px 22px 32px;
+    }
+
+    .photo-frame {
+        width: 132px;
+        height: 132px;
+    }
+}

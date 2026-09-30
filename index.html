@@ -2,15 +2,30 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>我的个人主页</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="box">
+    <main class="box">
+        <div class="photo-frame">
+            <!-- 换成自己的照片：把文件命名为 photo.jpg 放进 images/ 目录即可 -->
+            <img class="avatar"
+                 src="images/photo.jpg"
+                 alt="我的照片"
+                 width="168"
+                 height="168"
+                 decoding="async"
+                 onerror="this.hidden = true">
+            <span class="photo-hint">
+                把照片放进<br><code>images/photo.jpg</code>
+            </span>
+        </div>
+
         <h1>我叫马伊娜</h1>
-        <p>个人介绍：我是上外的学生，喜欢语言、翻译，对AI辅助学习很感兴趣。</p>
-        <p>兴趣方向：翻译研究、AI工具在语言学习中的应用</p>
-        <img src="photo.jpg" alt="我的照片">
-    </div>
+
+        <p>个人介绍：我是上外的学生，喜欢语言、翻译，对 AI 辅助学习很感兴趣。</p>
+        <p>兴趣方向：翻译研究、AI 工具在语言学习中的应用</p>
+    </main>
 </body>
 </html>

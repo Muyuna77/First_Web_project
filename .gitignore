@@ -1,0 +1,9 @@
+# macOS
+.DS_Store
+
+# PyCharm / IntelliJ
+.idea/
+*.iml
+
+# 让目录结构留空时也能提交
+!images/
