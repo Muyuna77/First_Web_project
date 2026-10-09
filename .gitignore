@@ -1,0 +1,13 @@
+# macOS
+.DS_Store
+
+# PyCharm / IntelliJ
+.idea/
+*.iml
+
+# 让目录结构留空时也能提交
+!images/
+
+# Python 虚拟环境（编辑器自动生成的，不用传）
+.venv/
+pyproject.toml
