@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>马伊娜的个人主页（盒模型版）</title>
+  <link rel="stylesheet" href="box-model.css">
+</head>
+<body>
+
+  <main>
+
+    <!-- 页面标题 -->
+    <h1>马伊娜的个人主页</h1>
+
+    <!-- 关于我：左边一个圆形头像，右边一段介绍 -->
+    <section class="profile">
+      <div class="avatar">马</div>
+      <div class="profile-text">
+        <h2>你好，我是马伊娜</h2>
+        <p>还在上学，性格挺外向的，平时最喜欢约上同学去球场打球。</p>
+      </div>
+    </section>
+
+    <!-- 兴趣爱好 -->
+    <h2 class="section-title">兴趣爱好</h2>
+    <ul class="list">
+      <li>打篮球：有空就会约上同学去球场打一会儿，打完整个人都很痛快</li>
+      <li>散步：我喜欢去公园散步，天气好的时候走一走，整个人都很放松</li>
+      <li>做饭：没事的时候喜欢自己下厨，做出来的味道还行，偶尔也会翻车</li>
+    </ul>
+
+    <!-- 学习方向 -->
+    <h2 class="section-title">学习方向</h2>
+    <p>我现在主要在看人工智能和机器学习这方面的内容，目前还处在打基础的阶段，很多东西都只是一知半解。今年的计划是：</p>
+    <ul class="list">
+      <li>把 Python 的基本语法学扎实</li>
+      <li>弄懂机器学习里一些常见的算法是怎么回事</li>
+      <li>后面再试着接触一下神经网络</li>
+    </ul>
+
+    <!-- 我的作品：三张卡片 -->
+    <h2 class="section-title">我的作品</h2>
+    <section class="works">
+
+      <article class="work">
+        <h3>个人主页</h3>
+        <p>第一份作业做的页面，写了自己的介绍和爱好，也顺便把练习代码放上了。</p>
+        <a href="index.html">查看作品</a>
+      </article>
+
+      <article class="work">
+        <h3>学习笔记</h3>
+        <p>整理 HTML 和 CSS 的知识，记录每次练习中的问题与解决过程。</p>
+        <a href="#project-2">查看作品</a>
+      </article>
+
+      <article class="work">
+        <h3>Python 练习</h3>
+        <p>跟着教程敲的一些代码，写得不怎么样，但每跑通一个都挺开心的，都放在 GitHub 上了。</p>
+        <a href="https://github.com/Muyuna77" target="_blank">查看作品</a>
+      </article>
+
+    </section>
+
+    <!-- 作品详情 -->
+    <section class="details">
+      <h2>作品详情</h2>
+
+      <h3 id="project-1">个人主页</h3>
+      <p>用 HTML 写内容，用 CSS 调颜色、字号和留白。那时候还不太懂排版，只是把东西一样一样往下堆。</p>
+
+      <h3 id="project-2">学习笔记</h3>
+      <p>记录盒模型、选择器和留白的学习心得。padding 和 margin 一直分不清，后来用浏览器慢慢拖动了才看明白。</p>
+
+      <h3 id="project-3">Python 练习</h3>
+      <p>学 Python 的时候跟着教程写的小练习，都传到 GitHub 上了，代码还比较乱，慢慢整理。</p>
+    </section>
+
+    <!-- 联系我 -->
+    <section class="contact">
+      <h2>联系我</h2>
+      <p>欢迎交流网页设计，也欢迎约球。</p>
+      <p>邮箱：<a href="mailto:2804751287@qq.com">2804751287@qq.com</a></p>
+    </section>
+
+    <footer>马伊娜的个人主页</footer>
+
+  </main>
+
+</body>
+</html>

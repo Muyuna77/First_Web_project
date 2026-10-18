@@ -1,0 +1,188 @@
+/* 马伊娜的个人主页 —— 第二份作业（盒模型版）
+   版式参考课上给的样例：一张白卡片，里面分成
+   关于我 / 兴趣爱好 / 学习方向 / 我的作品 / 作品详情 / 联系我
+*/
+
+/* 每个元素都是一个盒子：内容 → 内边距 padding → 边框 border → 外边距 margin */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Microsoft YaHei", sans-serif;
+  font-size: 17px;
+  line-height: 1.7;
+  color: #24364b;
+  background: #eef3f9;
+}
+
+/* ===== 最外面的白卡片 =====
+   宽度最多 1000px，左右 margin 自动就居中了；padding 是卡片里面的留白 */
+main {
+  max-width: 1000px;
+  margin: 32px auto;
+  padding: 36px;
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 4px 20px rgba(36, 54, 75, .06);
+}
+
+/* ===== 文字 ===== */
+h1 {
+  margin: 0 0 26px 0;
+  font-size: 30px;
+  color: #075d9c;
+}
+
+h2 {
+  margin: 0 0 14px 0;
+  font-size: 22px;
+  color: #123c60;
+}
+
+h3 {
+  margin: 0 0 8px 0;
+  font-size: 19px;
+}
+
+p {
+  margin: 0 0 12px 0;
+}
+
+a {
+  color: #0867a6;
+}
+
+/* 各个区块之间留出距离，用 margin-top 撑开 */
+.section-title {
+  margin-top: 34px;
+}
+
+.list {
+  margin: 0 0 12px 22px;
+  padding: 0;
+}
+
+.list li {
+  margin-bottom: 6px;
+}
+
+/* ===== 关于我 =====
+   一条横盒子：左边头像，右边文字。
+   背景、内边距、圆角都做在这个盒子上 */
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 26px;
+  margin: 0 0 6px 0;
+  padding: 26px;
+  background: #f4f8fc;
+  border-radius: 12px;
+}
+
+/* 头像：宽高一样，圆角给一半就是圆的。
+   96px 里已经含了边框（上面设了 border-box） */
+.avatar {
+  flex-shrink: 0;
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #cfe6fb, #a4d0f2);
+  color: #075d9c;
+  font-size: 42px;
+  line-height: 96px;
+  text-align: center;
+}
+
+/* 这块里的标题就是人名，不用再留上边距 */
+.profile h2 {
+  margin: 0 0 10px 0;
+}
+
+.profile p:last-child {
+  margin-bottom: 0;
+}
+
+/* ===== 我的作品：三张卡片横着排 ===== */
+.works {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+}
+
+/* 每张卡片也是一个盒子：padding 是卡片里的留白，border 是那圈细边 */
+.work {
+  flex: 1 1 240px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  background: #fbfcfe;
+  border: 1px solid #dde6ef;
+  border-radius: 12px;
+}
+
+.work p {
+  font-size: 16px;
+}
+
+/* margin-top: auto 把链接推到卡片最底下，三张卡片的链接就对齐了 */
+.work a {
+  margin-top: auto;
+  font-size: 16px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.work a:hover {
+  text-decoration: underline;
+}
+
+/* ===== 作品详情 / 联系我 =====
+   上面一条细线，和上一块分开 */
+.details,
+.contact {
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid #e4ecf4;
+}
+
+.details h3 {
+  margin: 18px 0 6px 0;
+}
+
+.details h3:first-of-type {
+  margin-top: 4px;
+}
+
+/* ===== 页脚 ===== */
+footer {
+  margin-top: 28px;
+  text-align: center;
+  color: #7b8ea3;
+  font-size: 15px;
+}
+
+/* ===== 手机上：卡片竖着排，头像也和文字分成上下 ===== */
+@media screen and (max-width: 640px) {
+  main {
+    margin: 16px;
+    padding: 20px;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+
+  .profile {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 20px;
+  }
+
+  .work {
+    flex: 1 1 100%;
+  }
+}

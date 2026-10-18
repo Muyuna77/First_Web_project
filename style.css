@@ -1,0 +1,116 @@
+/* 我的个人主页样式表 */
+
+/* 清除默认的边距 */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Microsoft YaHei", Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.8;
+  color: #4a3a42;
+  /* 粉色的猫咪背景图，平铺满整个页面 */
+  background-color: #ffe9f2;
+  background-image: url("images/bg.jpg");
+  background-repeat: repeat;
+}
+
+/* 整个页面放在一个大盒子里，水平居中 */
+.container {
+  width: 800px;
+  max-width: 92%;
+  margin: 30px auto;
+  /* 半透明白色，能隐约透出后面的背景图 */
+  background-color: rgba(255, 255, 255, 0.93);
+  border: 3px solid #ffc0da;
+  border-radius: 20px;
+  box-shadow: 0 8px 24px rgba(255, 150, 190, 0.4);
+  overflow: hidden;
+}
+
+/* 顶部的标题 */
+.header {
+  padding: 28px 10px;
+  text-align: center;
+  color: #ffffff;
+  background-color: #ff8fb8;
+}
+
+.header h1 {
+  font-size: 26px;
+  letter-spacing: 2px;
+}
+
+.header p {
+  font-size: 14px;
+  margin-top: 6px;
+}
+
+/* 正文 */
+.content {
+  padding: 10px 36px 34px 36px;
+}
+
+h2 {
+  margin: 30px 0 14px 0;
+  padding-left: 10px;
+  font-size: 20px;
+  color: #e2537f;
+  border-left: 5px solid #ff9ec4;
+}
+
+p {
+  margin-bottom: 12px;
+  text-indent: 2em;
+}
+
+/* 介绍图片 */
+.photo {
+  display: block;
+  width: 300px;
+  margin: 18px auto 22px auto;
+  border: 5px solid #ffd6e7;
+  border-radius: 18px;
+}
+
+/* 列表 */
+ul {
+  margin: 0 0 10px 24px;
+  list-style: none;
+}
+
+li {
+  margin-bottom: 8px;
+}
+
+/* 每条前面加一个小蝴蝶结 */
+li::before {
+  content: "🎀 ";
+}
+
+/* 超链接 */
+a {
+  color: #e2537f;
+}
+
+a:hover {
+  color: #d81b60;
+  text-decoration: underline;
+}
+
+/* 手机上看的时候把页面调窄一点 */
+@media screen and (max-width: 600px) {
+  .content {
+    padding: 10px 16px 24px 16px;
+  }
+
+  .header h1 {
+    font-size: 21px;
+  }
+
+  .photo {
+    width: 100%;
+  }
+}
