@@ -1,0 +1,1358 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>马伊娜 · Muyuna — 个人空间</title>
+<meta name="description" content="马伊娜的个人主页：关于我、我的家乡青海、做过的网页作品、最近在做的事，还有一块可以留言的板子。">
+<meta name="theme-color" content="#f2eee5">
+<meta property="og:type" content="website">
+<meta property="og:title" content="马伊娜 · Muyuna — 个人空间">
+<meta property="og:description" content="关于我、我的家乡青海、做过的网页作品，和一块可以留言的板子。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23181511'/%3E%3Ctext x='16' y='23' font-size='19' text-anchor='middle' fill='%23e8441c' font-family='Songti SC,serif'%3E%E9%A9%AC%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://miaoda.feishu.cn" crossorigin>
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Serif+SC:wght@600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&family=Space+Grotesk:wght@400;500;700&display=swap">
+<script>document.documentElement.classList.add('js');</script>
+<style>
+/* ============================================================
+   设计系统 · 高原报刊编辑风（第四版）
+   paper / ink / vermilion / alpine blue
+   ============================================================ */
+:root{
+  --paper:#f2eee5;
+  --paper-2:#ebe5d8;
+  --card:#fffdf8;
+  --ink:#181511;
+  --ink-soft:#4a443a;
+  --line:#d8d0bf;
+  --accent:#e8441c;      /* 朱红 */
+  --blue:#2746d8;        /* 高原蓝 */
+  --gold:#c8902a;
+  --serif:"Noto Serif SC", "Songti SC", "STSong", serif;
+  --sans:"Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --mono:"Space Grotesk", "SF Mono", "Menlo", monospace;
+  --rail:260px;
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-weight:400;
+  line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+::selection{background:var(--accent);color:var(--paper)}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;color:inherit}
+img,svg{max-width:100%}
+:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
+
+/* 纸张噪点 */
+.grain{
+  position:fixed;inset:0;z-index:200;pointer-events:none;opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* 顶部阅读进度 */
+.progress{
+  position:fixed;top:0;left:0;right:0;height:3px;z-index:300;
+  background:var(--accent);transform:scaleX(0);transform-origin:0 50%;
+  pointer-events:none;
+}
+
+/* 跳到正文 */
+.skip{
+  position:fixed;left:16px;top:-64px;z-index:400;
+  background:var(--ink);color:var(--paper);padding:10px 18px;
+  font-family:var(--mono);font-size:12px;letter-spacing:.14em;transition:top .2s var(--ease);
+}
+.skip:focus{top:14px}
+
+/* ============ 左侧固定导航栏 ============ */
+.rail{
+  position:fixed;top:0;left:0;bottom:0;width:var(--rail);z-index:100;
+  border-right:1.5px solid var(--ink);
+  background:var(--paper);
+  display:flex;flex-direction:column;justify-content:space-between;
+  padding:32px 26px;gap:24px;
+}
+.rail-mark{font-family:var(--serif);font-weight:900;font-size:26px;letter-spacing:.02em;line-height:1.15}
+.rail-mark small{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.22em;color:var(--ink-soft);margin-top:8px;text-transform:uppercase}
+.rail-mark .dot{color:var(--accent)}
+.rail-nav{display:flex;flex-direction:column;gap:2px;margin-top:34px}
+.rail-nav a{
+  display:flex;align-items:baseline;gap:14px;
+  padding:11px 0;border-bottom:1px dashed var(--line);
+  font-family:var(--mono);font-size:13px;letter-spacing:.08em;
+  color:var(--ink-soft);position:relative;transition:color .25s;
+}
+.rail-nav a .num{font-size:11px;color:var(--accent)}
+.rail-nav a .cn{font-family:var(--serif);font-size:17px;font-weight:700;letter-spacing:.05em;color:var(--ink);transition:color .25s}
+.rail-nav a::before{
+  content:"";position:absolute;left:-26px;top:0;bottom:0;width:3px;background:var(--accent);
+  transform:scaleY(0);transform-origin:top;transition:transform .25s var(--ease);
+}
+.rail-nav a:hover,.rail-nav a.active{color:var(--accent)}
+.rail-nav a:hover .cn,.rail-nav a.active .cn{color:var(--accent)}
+.rail-nav a.active::before{transform:scaleY(1)}
+.rail-foot{display:flex;flex-direction:column;gap:16px}
+.rail-status{font-family:var(--mono);font-size:11px;line-height:1.9;color:var(--ink-soft);letter-spacing:.05em}
+.rail-status b{color:var(--ink)}
+.pulse{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--accent);margin-right:6px;animation:pulse 1.6s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
+.totop{
+  display:inline-flex;align-items:center;justify-content:space-between;gap:12px;
+  border:1.5px solid var(--ink);background:transparent;padding:10px 14px;
+  font-family:var(--mono);font-size:11px;letter-spacing:.14em;
+  opacity:.35;pointer-events:none;transition:.25s var(--ease);
+}
+.totop.show{opacity:1;pointer-events:auto}
+.totop:hover{background:var(--ink);color:var(--paper)}
+
+/* 移动端顶栏 + 抽屉 */
+.topbar{
+  display:none;position:sticky;top:0;z-index:95;background:var(--paper);
+  border-bottom:1.5px solid var(--ink);padding:12px 20px;
+  align-items:center;justify-content:space-between;gap:16px;
+}
+.topbar .brand{font-family:var(--serif);font-weight:900;font-size:19px}
+.topbar .brand .dot{color:var(--accent)}
+.burger{
+  width:42px;height:34px;border:1.5px solid var(--ink);background:none;
+  display:grid;place-items:center;align-content:center;gap:5px;flex:none;
+}
+.burger span{display:block;width:17px;height:1.5px;background:var(--ink);transition:transform .25s var(--ease),opacity .2s}
+.burger[aria-expanded="true"] span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.burger[aria-expanded="true"] span:nth-child(2){opacity:0}
+.burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+.mnav{
+  display:none;position:fixed;left:0;right:0;top:59px;z-index:94;
+  background:var(--paper);border-bottom:1.5px solid var(--ink);
+  padding:10px 20px 18px;
+  opacity:0;transform:translateY(-10px);pointer-events:none;
+  transition:opacity .25s var(--ease),transform .25s var(--ease);
+}
+.mnav.open{opacity:1;transform:none;pointer-events:auto}
+.mnav a{
+  display:flex;align-items:baseline;gap:12px;padding:13px 0;
+  border-bottom:1px dashed var(--line);
+  font-family:var(--mono);font-size:12px;letter-spacing:.1em;color:var(--ink-soft);
+}
+.mnav a .num{color:var(--accent);font-size:11px}
+.mnav a .cn{font-family:var(--serif);font-size:18px;font-weight:700;color:var(--ink)}
+.mnav a.active .cn,.mnav a.active{color:var(--accent)}
+
+/* ============ 主栏 ============ */
+main{margin-left:var(--rail)}
+section{position:relative;padding:96px clamp(28px,6vw,90px)}
+section[id]{scroll-margin-top:84px}
+
+/* 区块编号眉标 */
+.eyebrow{
+  display:flex;align-items:center;gap:14px;font-family:var(--mono);
+  font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--ink-soft);
+  margin-bottom:28px;
+}
+.eyebrow .idx{color:var(--accent)}
+.eyebrow::after{content:"";flex:1;height:1px;background:var(--line)}
+h2.section-title{
+  font-family:var(--serif);font-weight:900;font-size:clamp(32px,4.4vw,56px);
+  line-height:1.14;letter-spacing:.01em;max-width:13.5em;
+}
+.section-sub{margin-top:16px;color:var(--ink-soft);max-width:38em;font-size:15px}
+
+/* 滚动显现 */
+.reveal{transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.js .reveal{opacity:0;transform:translateY(24px)}
+.js .reveal.in{opacity:1;transform:none}
+
+/* ============ HERO ============ */
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding-top:60px;overflow:hidden}
+.hero-meta{display:flex;flex-wrap:wrap;gap:26px;font-family:var(--mono);font-size:12px;letter-spacing:.14em;color:var(--ink-soft);margin-bottom:34px}
+.hero-meta span b{color:var(--ink)}
+.hero h1{
+  font-family:var(--serif);font-weight:900;
+  font-size:clamp(56px,9.6vw,132px);line-height:1;letter-spacing:.01em;
+}
+.hero h1 .hello{
+  display:block;font-family:var(--mono);font-weight:400;
+  font-size:clamp(13px,1.35vw,16px);letter-spacing:.34em;
+  color:var(--ink-soft);margin-bottom:16px;text-indent:.1em;
+}
+.hero h1 .name{display:block;line-height:.96}
+.hero h1 .outline{color:transparent;-webkit-text-stroke:1.5px var(--ink)}
+.hero h1 .accent{color:var(--accent)}
+.hero-sub{margin-top:30px;font-size:clamp(16px,1.6vw,20px);max-width:46ch;color:var(--ink-soft)}
+.hero-sub strong{color:var(--ink)}
+.hero-actions{display:flex;flex-wrap:wrap;gap:16px;margin-top:38px;align-items:center}
+.btn{
+  display:inline-flex;align-items:center;gap:10px;padding:14px 26px;
+  border:1.5px solid var(--ink);background:var(--ink);color:var(--paper);
+  font-family:var(--mono);font-size:13px;letter-spacing:.12em;transition:.25s var(--ease);
+}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn:hover{background:var(--accent);border-color:var(--accent);color:var(--paper)}
+.btn.ghost:hover{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+
+/* 旋转徽章 */
+.badge{position:absolute;right:clamp(20px,7vw,90px);top:15%;width:132px;height:132px;pointer-events:none}
+.badge svg{animation:spin 20s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.badge .core{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--serif);font-weight:900;font-size:30px;color:var(--accent)}
+
+/* 跑马灯 */
+.marquee{margin-top:66px;border-top:1.5px solid var(--ink);border-bottom:1.5px solid var(--ink);overflow:hidden;white-space:nowrap;padding:14px 0}
+.marquee-track{display:inline-flex;animation:mq 30s linear infinite;font-family:var(--mono);font-size:13px;letter-spacing:.18em}
+.marquee-track span{display:inline-flex;align-items:center;gap:48px;margin-right:48px}
+.marquee-track .star{color:var(--accent)}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* 背景巨字 */
+.ghost-word{position:absolute;right:-20px;bottom:-70px;font-family:var(--serif);font-weight:900;font-size:clamp(120px,22vw,300px);color:transparent;-webkit-text-stroke:1px var(--line);pointer-events:none;line-height:1;z-index:0;opacity:.75}
+
+/* ============ ABOUT ============ */
+.about-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;margin-top:56px}
+.info-panel{border:1.5px solid var(--ink);background:var(--card)}
+.info-row{display:grid;grid-template-columns:150px 1fr;padding:18px 24px;border-bottom:1px dashed var(--line)}
+.info-row:last-child{border-bottom:none}
+.info-row .k{font-family:var(--mono);font-size:12px;letter-spacing:.14em;color:var(--ink-soft);text-transform:uppercase}
+.info-row .v{font-size:15px}
+.info-row .v a{border-bottom:1px solid var(--accent);color:var(--ink)}
+.info-row .v a:hover{color:var(--accent)}
+
+/* 名片卡 */
+.profile-card{border:1.5px solid var(--ink);background:var(--ink);color:var(--paper);padding:34px;position:relative;overflow:hidden}
+.profile-card::before{content:"";position:absolute;right:-60px;top:-60px;width:180px;height:180px;border:1.5px solid rgba(242,238,229,.18);border-radius:50%}
+.portrait{
+  width:104px;height:104px;border:1.5px solid var(--paper);border-radius:50%;
+  display:grid;place-items:center;font-family:var(--serif);font-weight:900;font-size:42px;background:var(--accent);
+}
+.profile-card h3{font-family:var(--serif);font-size:28px;font-weight:900;margin-top:22px}
+.profile-card .role{font-family:var(--mono);font-size:12px;letter-spacing:.18em;color:rgba(242,238,229,.7);margin-top:6px}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.tags span{border:1px solid rgba(242,238,229,.35);padding:6px 12px;font-size:12px;letter-spacing:.05em}
+
+/* 心情卡 */
+.mood{margin-top:24px;border:1.5px dashed var(--ink);background:var(--card);padding:28px;display:block;width:100%;text-align:left;position:relative;transition:.25s var(--ease)}
+.mood:hover{background:var(--paper-2)}
+.mood-label{font-family:var(--mono);font-size:11px;letter-spacing:.24em;color:var(--accent);text-transform:uppercase}
+.mood-text{display:block;font-family:var(--serif);font-size:21px;font-weight:700;margin:14px 0 10px;line-height:1.5;transition:opacity .18s}
+.mood-hint{font-size:12px;color:var(--ink-soft)}
+
+/* 自我评价 + 爱好 */
+.about-lower{margin-top:48px;display:grid;grid-template-columns:1fr 1fr;gap:48px}
+.block-title{display:flex;align-items:baseline;gap:12px;font-family:var(--serif);font-weight:700;font-size:20px;margin-bottom:22px}
+.block-title .no{font-family:var(--mono);font-size:12px;color:var(--accent)}
+.statement{display:flex;gap:16px;padding:16px 0;border-bottom:1px dashed var(--line)}
+.statement:last-child{border-bottom:none}
+.statement .idx{font-family:var(--mono);color:var(--accent);font-size:13px;padding-top:3px}
+.statement p{font-size:15px}
+
+.hobby-group{margin-bottom:22px}
+.hobby-group:last-child{margin-bottom:0}
+.hobby-group h4{font-family:var(--mono);font-size:12px;letter-spacing:.18em;color:var(--ink-soft);margin-bottom:12px}
+.hobby-group h4 b{color:var(--ink)}
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chip{
+  border:1.5px solid var(--ink);padding:8px 16px;font-size:14px;background:var(--card);
+  transition:.2s var(--ease);
+}
+.chip:hover{background:var(--ink);color:var(--paper);transform:translateY(-2px)}
+.chip.blue{border-color:var(--blue)}
+.chip.blue:hover{background:var(--blue);border-color:var(--blue)}
+
+/* ============ 家乡 ============ */
+#hometown{background:var(--ink);color:var(--paper)}
+#hometown .eyebrow{color:rgba(242,238,229,.6)}
+#hometown .eyebrow::after{background:rgba(242,238,229,.2)}
+#hometown .section-sub{color:rgba(242,238,229,.7)}
+#hometown .info-row{border-color:rgba(242,238,229,.15)}
+#hometown .info-row .k{color:rgba(242,238,229,.55)}
+#hometown .block-title{color:var(--paper)}
+
+.town-hero{margin-top:50px;border:1.5px solid rgba(242,238,229,.25);background:#1f1b15;overflow:hidden}
+.town-hero svg{display:block;width:100%;height:100%;min-height:300px}
+.town-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:0}
+.town-grid .town-text{padding:36px}
+.town-text .info-row{grid-template-columns:72px 1fr;padding:15px 0;gap:14px}
+.town-text .info-row .v{font-size:14px;line-height:1.65}
+.town-text h3{font-family:var(--serif);font-size:26px;font-weight:900;margin-bottom:20px}
+.town-text h3 .pin{color:var(--accent)}
+
+.feature-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(242,238,229,.18);border:1.5px solid rgba(242,238,229,.25);margin-top:48px}
+.feature{background:var(--ink);padding:30px 24px;transition:.3s var(--ease)}
+.feature:hover{background:#241f18}
+.feature .fic{font-family:var(--mono);font-size:22px;color:var(--accent)}
+.feature h4{font-family:var(--serif);font-size:18px;font-weight:700;margin:16px 0 10px}
+.feature p{font-size:13.5px;color:rgba(242,238,229,.7)}
+
+.food-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px}
+.food{border:1.5px solid rgba(242,238,229,.25);background:#1f1b15;overflow:hidden;transition:.3s var(--ease)}
+.food:hover{transform:translateY(-6px);border-color:var(--accent)}
+.food .art{height:150px;display:grid;place-items:center;border-bottom:1.5px solid rgba(242,238,229,.18)}
+.food .art svg{width:88px;height:88px}
+.food .body{padding:22px}
+.food h4{font-family:var(--serif);font-size:19px;font-weight:700}
+.food p{font-size:13.5px;color:rgba(242,238,229,.7);margin:10px 0 14px}
+.tags.food-tags{margin-top:0}
+.tags.food-tags span{border-color:rgba(242,238,229,.3);font-size:11px;padding:5px 10px;color:rgba(242,238,229,.8)}
+
+.memory-list{margin-top:48px;border-top:1.5px solid rgba(242,238,229,.25)}
+.memo{display:grid;grid-template-columns:80px 1fr;gap:24px;padding:28px 0;border-bottom:1px dashed rgba(242,238,229,.2)}
+.memo .mic{font-family:var(--serif);font-size:30px;color:var(--gold)}
+.memo h4{font-family:var(--serif);font-size:19px;font-weight:700}
+.memo p{font-size:14px;color:rgba(242,238,229,.7);margin-top:6px}
+
+/* ============ 作品 ============ */
+.work-list{margin-top:50px;border-top:1.5px solid var(--ink)}
+.work{
+  display:grid;grid-template-columns:90px 1fr auto;gap:28px;align-items:center;
+  padding:36px 8px;border-bottom:1.5px solid var(--ink);position:relative;transition:.3s var(--ease);
+}
+.work:hover{background:var(--card);padding-left:20px}
+.work .wno{font-family:var(--mono);font-size:14px;color:var(--accent)}
+.work h3{font-family:var(--serif);font-size:clamp(22px,2.4vw,30px);font-weight:900}
+.work p{margin-top:8px;color:var(--ink-soft);max-width:56ch;font-size:14.5px}
+.work .meta{display:flex;flex-direction:column;align-items:flex-end;gap:10px}
+.kind{font-family:var(--mono);font-size:11px;letter-spacing:.16em;border:1px solid var(--line);padding:5px 10px;color:var(--ink-soft)}
+.state{font-size:12px;display:inline-flex;align-items:center;gap:7px}
+.state::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--gold)}
+.state.done::before{background:var(--blue)}
+.work-link{display:inline-block;margin-top:10px;font-family:var(--mono);font-size:12px;letter-spacing:.1em;border-bottom:1px solid var(--accent);color:var(--accent)}
+
+.plan-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px}
+.plan{border:1.5px solid var(--ink);padding:30px;background:var(--card)}
+.plan .fic{font-family:var(--mono);font-size:20px;color:var(--blue)}
+.plan h4{font-family:var(--serif);font-size:18px;font-weight:700;margin:16px 0 10px}
+.plan p{font-size:13.5px;color:var(--ink-soft)}
+
+/* ============ 此刻 NOW ============ */
+#now{background:var(--paper-2)}
+.now-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1.5px solid var(--ink);margin-top:50px}
+.now-card{background:var(--card);padding:28px 24px;transition:.3s var(--ease)}
+.now-card:hover{background:#fff}
+.now-card .nk{font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--accent);text-transform:uppercase}
+.now-card h4{font-family:var(--serif);font-size:18px;font-weight:700;margin:12px 0 8px}
+.now-card p{font-size:13.5px;color:var(--ink-soft)}
+
+.now-lower{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;margin-top:56px}
+.timeline{border-left:1.5px solid var(--ink);padding-left:30px;margin-left:4px}
+.tl{position:relative;padding-bottom:32px}
+.tl:last-child{padding-bottom:0}
+.tl::before{
+  content:"";position:absolute;left:-36px;top:8px;width:10px;height:10px;
+  background:var(--paper-2);border:1.5px solid var(--accent);
+}
+.tl.now::before{background:var(--accent)}
+.tl-date{font-family:var(--mono);font-size:12px;letter-spacing:.16em;color:var(--ink-soft)}
+.tl h4{font-family:var(--serif);font-size:19px;font-weight:700;margin:6px 0 6px}
+.tl p{font-size:14px;color:var(--ink-soft);max-width:52ch}
+
+.side-note{border:1.5px solid var(--ink);background:var(--card);padding:30px;align-self:start}
+.side-note h4{font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--ink-soft);text-transform:uppercase;margin-bottom:18px}
+.note-row{display:grid;grid-template-columns:56px 1fr;gap:14px;padding:14px 0;border-bottom:1px dashed var(--line);font-size:14px}
+.note-row:last-child{border-bottom:none}
+.note-row .k{font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--accent);padding-top:3px}
+.note-row .v{color:var(--ink)}
+.note-row .v small{display:block;color:var(--ink-soft);font-size:12.5px;margin-top:2px}
+.quote{margin-top:24px;font-family:var(--serif);font-size:17px;font-weight:700;line-height:1.6;padding-left:18px;border-left:2px solid var(--accent)}
+
+/* ============ 留言板 ============ */
+.board-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:48px;margin-top:50px}
+.contact-item{display:flex;gap:18px;padding:22px 0;border-bottom:1px dashed var(--line)}
+.contact-item:last-child{border-bottom:none}
+.c-ic{width:44px;height:44px;border:1.5px solid var(--ink);display:grid;place-items:center;font-family:var(--mono);color:var(--accent);flex:none}
+.c-k{font-family:var(--mono);font-size:11px;letter-spacing:.18em;color:var(--ink-soft)}
+.c-v{font-size:15px;margin-top:4px;word-break:break-all}
+.c-v a{border-bottom:1px solid var(--accent)}
+.mini{margin-left:10px;border:1px solid var(--line);background:none;font-size:11px;padding:3px 10px;transition:.2s var(--ease)}
+.mini:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+
+.notice{margin-top:36px;border-left:3px solid var(--accent);padding:6px 0 6px 22px}
+.notice li{margin:10px 0;font-size:14px;color:var(--ink-soft);list-style:none}
+
+.msg-form{border:1.5px solid var(--ink);background:var(--card);padding:34px}
+.msg-form h3{font-family:var(--serif);font-size:22px;font-weight:900;margin-bottom:24px}
+.field{display:block;margin-bottom:20px}
+.field .label-row{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:8px}
+.field .label{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.18em;color:var(--ink-soft)}
+.counter{font-family:var(--mono);font-size:11px;color:var(--ink-soft)}
+.field input,.field select,.field textarea{
+  width:100%;border:none;border-bottom:1.5px solid var(--ink);background:transparent;
+  padding:10px 2px;font-family:var(--sans);font-size:15px;color:var(--ink);outline:none;
+  border-radius:0;
+}
+.field textarea{resize:vertical;min-height:96px}
+.field input:focus,.field select:focus,.field textarea:focus{border-bottom-color:var(--accent)}
+.field.bad input,.field.bad textarea{border-bottom-color:var(--accent)}
+.field.bad .label{color:var(--accent)}
+.hint{font-size:12.5px;color:var(--accent);min-height:18px;margin-bottom:12px}
+.send{width:100%;padding:16px;border:1.5px solid var(--ink);background:var(--ink);color:var(--paper);font-family:var(--mono);letter-spacing:.16em;font-size:13px;transition:.25s var(--ease)}
+.send:hover{background:var(--accent);border-color:var(--accent)}
+.tip{margin-top:14px;font-size:12px;color:var(--ink-soft);text-align:center}
+
+.msg-section{margin-top:56px}
+.msg-head{display:flex;align-items:baseline;gap:16px;margin-bottom:20px}
+.msg-head h3{font-family:var(--serif);font-size:24px;font-weight:900}
+.msg-count{font-family:var(--mono);color:var(--accent)}
+.msg-tools{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-bottom:24px;padding-bottom:18px;border-bottom:1px dashed var(--line)}
+.fchip{border:1px solid var(--line);background:none;padding:6px 12px;font-size:12.5px;color:var(--ink-soft);transition:.2s var(--ease)}
+.fchip:hover{border-color:var(--ink);color:var(--ink)}
+.fchip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.msg-clear{margin-left:auto;border:none;background:none;font-size:12px;color:var(--ink-soft);border-bottom:1px solid var(--line);padding:2px 0}
+.msg-clear:hover{color:var(--accent);border-color:var(--accent)}
+
+.msg-list{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.msg{border:1.5px solid var(--line);background:var(--card);padding:24px;position:relative}
+.msg-top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:10px}
+.msg-name{font-family:var(--serif);font-weight:700;font-size:16px}
+.msg-topic{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;color:var(--blue);border:1px solid var(--blue);padding:3px 8px;white-space:nowrap}
+.msg-text{font-size:14.5px;word-break:break-word}
+.msg-meta{margin-top:14px;font-family:var(--mono);font-size:11px;color:var(--ink-soft);display:flex;justify-content:space-between;align-items:center;gap:12px}
+.msg-del{background:none;border:none;color:var(--ink-soft);opacity:.55;font-size:11px;padding:2px}
+.msg-del:hover{color:var(--accent)}
+.empty{padding:30px;border:1.5px dashed var(--line);text-align:center;color:var(--ink-soft)}
+
+/* ============ 页脚 ============ */
+footer{margin-left:var(--rail);border-top:1.5px solid var(--ink);padding:36px clamp(28px,6vw,90px);display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;font-family:var(--mono);font-size:12px;letter-spacing:.1em;color:var(--ink-soft)}
+footer .foot-links{display:flex;flex-wrap:wrap;gap:20px}
+footer a:hover{color:var(--accent)}
+
+/* ============ 提示条 ============ */
+.toast{
+  position:fixed;left:50%;bottom:28px;z-index:350;
+  display:flex;align-items:center;gap:18px;max-width:calc(100vw - 40px);
+  background:var(--ink);color:var(--paper);padding:13px 20px;
+  font-size:13.5px;line-height:1.5;
+  opacity:0;transform:translate(-50%,20px);pointer-events:none;
+  transition:opacity .28s var(--ease),transform .28s var(--ease);
+}
+.toast.show{opacity:1;transform:translate(-50%,0);pointer-events:auto}
+.toast button{background:none;border:none;color:var(--accent);font-family:var(--mono);font-size:12px;letter-spacing:.1em;flex:none;border-bottom:1px solid var(--accent)}
+.toast-close{color:rgba(242,238,229,.55)!important;border-bottom:none!important;font-size:15px!important;line-height:1}
+
+/* ============ 响应式 ============ */
+@media (max-width:1100px){
+  .about-grid,.town-grid,.board-grid,.now-lower{grid-template-columns:1fr}
+  .feature-grid{grid-template-columns:repeat(2,1fr)}
+  .food-grid,.plan-grid,.now-grid{grid-template-columns:repeat(2,1fr)}
+  .badge{width:108px;height:108px;top:11%}
+}
+@media (max-width:760px){
+  :root{--rail:0px}
+  html{scroll-padding-top:72px}
+  .rail{display:none}
+  .topbar{display:flex}
+  .mnav{display:block}
+  main,footer{margin-left:0}
+  section{padding:64px 22px}
+  section[id]{scroll-margin-top:72px}
+  .about-lower{grid-template-columns:1fr;gap:36px}
+  .food-grid,.plan-grid,.feature-grid,.msg-list,.now-grid{grid-template-columns:1fr}
+  .work{grid-template-columns:46px 1fr;gap:16px;padding:28px 4px}
+  .work:hover{padding-left:8px}
+  .work .meta{grid-column:2;flex-direction:row;justify-content:flex-start;align-items:center;flex-wrap:wrap}
+  .badge{display:none}
+  .hero{min-height:92vh;padding-top:48px}
+  .ghost-word{bottom:-14px}
+  .marquee{margin-top:46px}
+  .info-row{grid-template-columns:1fr;gap:4px;padding:14px 18px}
+  .town-grid .town-text{padding:24px}
+  .town-hero svg{height:auto;min-height:0}
+  .msg-form{padding:24px}
+  .msg-clear{margin-left:0}
+  footer{flex-direction:column}
+}
+
+/* ============ 减少动效 / 打印 ============ */
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+  .js .reveal{opacity:1;transform:none}
+  .marquee-track{animation:none}
+}
+@media print{
+  .rail,.topbar,.mnav,.progress,.toast,.grain,.badge,.marquee,.totop,.msg-del,.msg-clear,.msg-form,.hero-actions{display:none!important}
+  body{background:#fff;color:#000}
+  main,footer{margin-left:0}
+  section{padding:24px 0;page-break-inside:avoid}
+  #hometown{background:#fff;color:#000}
+  #hometown .feature p,#hometown .memo p,#hometown .food p{color:#333}
+}
+</style>
+</head>
+<body>
+
+<div class="grain" aria-hidden="true"></div>
+<div class="progress" id="progress" aria-hidden="true"></div>
+<a class="skip" href="#main">跳到正文</a>
+
+<!-- ===== 左侧导航 ===== -->
+<aside class="rail">
+  <div>
+    <div class="rail-mark">马伊娜<span class="dot">.</span><small>Muyuna · Portfolio</small></div>
+    <nav class="rail-nav" id="railNav" aria-label="页面导航">
+      <a href="#about" class="active" aria-current="true"><span class="num">01</span><span class="cn">关于我</span></a>
+      <a href="#hometown"><span class="num">02</span><span class="cn">我的家乡</span></a>
+      <a href="#works"><span class="num">03</span><span class="cn">我的作品</span></a>
+      <a href="#now"><span class="num">04</span><span class="cn">此刻在做什么</span></a>
+      <a href="#board"><span class="num">05</span><span class="cn">留言板</span></a>
+    </nav>
+  </div>
+  <div class="rail-foot">
+    <div class="rail-status">
+      <p><span class="pulse"></span><b>STATUS</b> 正在学习中</p>
+      <p>BASED IN 青藏高原 · 青海</p>
+      <p>NOW <b id="clock">--:--</b></p>
+      <p>2026 © MUYUNA</p>
+    </div>
+    <button type="button" class="totop" id="totop"><span>回到顶部</span><span>↑</span></button>
+  </div>
+</aside>
+
+<!-- 移动端顶栏 -->
+<header class="topbar">
+  <a class="brand" href="#top">马伊娜<span class="dot">.</span></a>
+  <button type="button" class="burger" id="burger" aria-expanded="false" aria-controls="mnav" aria-label="打开导航菜单">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+<nav class="mnav" id="mnav" aria-label="移动端导航">
+  <a href="#about"><span class="num">01</span><span class="cn">关于我</span></a>
+  <a href="#hometown"><span class="num">02</span><span class="cn">我的家乡</span></a>
+  <a href="#works"><span class="num">03</span><span class="cn">我的作品</span></a>
+  <a href="#now"><span class="num">04</span><span class="cn">此刻在做什么</span></a>
+  <a href="#board"><span class="num">05</span><span class="cn">留言板</span></a>
+</nav>
+
+<main id="main">
+
+  <!-- ================= HERO ================= -->
+  <section class="hero" id="top">
+    <div class="ghost-word" aria-hidden="true">青海</div>
+
+    <div class="hero-meta reveal">
+      <span>NO. <b>004</b></span>
+      <span>身份 / <b>在校学生</b></span>
+      <span>方向 / <b>人工智能 · 机器学习</b></span>
+      <span>海拔 / <b>3000m+</b></span>
+    </div>
+
+    <h1 class="reveal">
+      <span class="hello">你好，我是</span>
+      <span class="name"><span class="accent">马</span>伊娜<span class="outline">。</span></span>
+    </h1>
+
+    <p class="hero-sub reveal">
+      一个性格外向、爱打球、爱做饭，也正在敲代码的人。
+      这里是我的数字角落——<strong>关于我、我的家乡、做过的网页，和最近在做的事</strong>，都收在这一页里。
+    </p>
+
+    <div class="hero-actions reveal">
+      <a class="btn" href="#about">进入目录 ↓</a>
+      <a class="btn ghost" href="#now">最近在做什么 →</a>
+      <a class="btn ghost" href="https://github.com/Muyuna77" target="_blank" rel="noopener">GitHub →</a>
+    </div>
+
+    <!-- 旋转徽章 -->
+    <div class="badge reveal" aria-hidden="true">
+      <svg viewBox="0 0 132 132">
+        <defs>
+          <path id="circlePath" d="M66,66 m-52,0 a52,52 0 1,1 104,0 a52,52 0 1,1 -104,0"/>
+        </defs>
+        <text font-size="12.5" letter-spacing="3" fill="#4a443a" font-family="Space Grotesk, monospace">
+          <textPath href="#circlePath">CODE · BASKETBALL · COOK · QINGHAI ·</textPath>
+        </text>
+      </svg>
+      <div class="core">馬</div>
+    </div>
+
+    <div class="marquee reveal" aria-hidden="true">
+      <div class="marquee-track">
+        <span>HTML <i class="star">✦</i> CSS <i class="star">✦</i> JAVASCRIPT <i class="star">✦</i> PYTHON <i class="star">✦</i> 篮球 <i class="star">✦</i> 跑步 <i class="star">✦</i> 羽毛球 <i class="star">✦</i> 做饭 <i class="star">✦</i> 逛超市 <i class="star">✦</i> 听歌 <i class="star">✦</i> 拍照 <i class="star">✦</i></span>
+        <span aria-hidden="true">HTML <i class="star">✦</i> CSS <i class="star">✦</i> JAVASCRIPT <i class="star">✦</i> PYTHON <i class="star">✦</i> 篮球 <i class="star">✦</i> 跑步 <i class="star">✦</i> 羽毛球 <i class="star">✦</i> 做饭 <i class="star">✦</i> 逛超市 <i class="star">✦</i> 听歌 <i class="star">✦</i> 拍照 <i class="star">✦</i></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 01 关于我 ================= -->
+  <section id="about">
+    <div class="eyebrow reveal"><span class="idx">01</span> About · 关于我</div>
+    <h2 class="section-title reveal">了解真实的我，<br>从这一页开始。</h2>
+    <p class="section-sub reveal">不算快，但答应下来的事会做完；喜欢动手试，做不出来就一点点改。</p>
+
+    <div class="about-grid">
+      <div class="info-panel reveal">
+        <div class="info-row"><span class="k">姓名 / Name</span><span class="v">马伊娜</span></div>
+        <div class="info-row"><span class="k">身份 / Role</span><span class="v">在校学生，大一</span></div>
+        <div class="info-row"><span class="k">方向 / Focus</span><span class="v">人工智能 / 机器学习</span></div>
+        <div class="info-row"><span class="k">性格 / Trait</span><span class="v">外向，喜欢和人打交道</span></div>
+        <div class="info-row"><span class="k">在学 / Learning</span><span class="v">HTML、CSS、JavaScript、Python</span></div>
+        <div class="info-row"><span class="k">家乡 / Hometown</span><span class="v">青海 · 青藏高原</span></div>
+        <div class="info-row"><span class="k">邮箱 / Mail</span><span class="v"><a href="mailto:2804751287@qq.com">2804751287@qq.com</a></span></div>
+        <div class="info-row"><span class="k">GitHub</span><span class="v"><a href="https://github.com/Muyuna77" target="_blank" rel="noopener">github.com/Muyuna77</a></span></div>
+      </div>
+
+      <aside>
+        <div class="profile-card reveal">
+          <div class="portrait" aria-hidden="true">马</div>
+          <h3>马伊娜</h3>
+          <p class="role">在校学生 · 人工智能方向</p>
+          <div class="tags">
+            <span>爱打球</span><span>做饭新手</span><span>编程起步</span>
+          </div>
+        </div>
+
+        <button type="button" class="mood reveal" id="moodCard">
+          <span class="mood-label">今日心情 · Mood</span>
+          <span class="mood-text" id="moodText" aria-live="polite">写代码的时候最安静</span>
+          <span class="mood-hint">点一下，换一句 ↻</span>
+        </button>
+      </aside>
+    </div>
+
+    <div class="about-lower">
+      <div class="reveal">
+        <h3 class="block-title"><span class="no">A.</span>自我评价</h3>
+        <div class="statement"><span class="idx">01</span><p>性格外向，和人相处不费劲，打球的时候最放松。</p></div>
+        <div class="statement"><span class="idx">02</span><p>做事不算快，但答应下来的事会做完。</p></div>
+        <div class="statement"><span class="idx">03</span><p>喜欢动手试，做不出来就一点点改。</p></div>
+        <div class="statement"><span class="idx">04</span><p>写代码还在起步阶段，遇到报错先从最笨的地方查。</p></div>
+      </div>
+
+      <div class="reveal">
+        <h3 class="block-title"><span class="no">B.</span>个人爱好</h3>
+        <div class="hobby-group">
+          <h4>运动 <b>/ 04</b></h4>
+          <div class="chips"><a class="chip" href="#now">篮球</a><a class="chip" href="#now">跑步</a><a class="chip" href="#now">羽毛球</a><a class="chip" href="#now">散步</a></div>
+        </div>
+        <div class="hobby-group">
+          <h4>生活 <b>/ 03</b></h4>
+          <div class="chips"><a class="chip" href="#hometown">做饭</a><a class="chip" href="#now">收拾房间</a><a class="chip" href="#now">逛超市</a></div>
+        </div>
+        <div class="hobby-group">
+          <h4>学习 <b>/ 04</b></h4>
+          <div class="chips"><a class="chip blue" href="#works">HTML</a><a class="chip blue" href="#works">CSS</a><a class="chip blue" href="#now">JavaScript</a><a class="chip blue" href="#now">Python</a></div>
+        </div>
+        <div class="hobby-group">
+          <h4>娱乐 <b>/ 03</b></h4>
+          <div class="chips"><a class="chip" href="#now">听歌</a><a class="chip" href="#now">看剧</a><a class="chip" href="#now">拍照</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 02 我的家乡 ================= -->
+  <section id="hometown">
+    <div class="eyebrow reveal"><span class="idx">02</span> Hometown · 我的家乡</div>
+    <h2 class="section-title reveal">青藏高原上的一座小城，<br>安静，也讲究规矩。</h2>
+    <p class="section-sub reveal">海拔三千多米，天很近，云很低。高原人家，吃饭从小讲究。</p>
+
+    <div class="town-hero reveal">
+      <div class="town-grid">
+        <!-- 高原湖山 SVG 插画 -->
+        <svg viewBox="40 0 560 460" preserveAspectRatio="xMidYMid slice" role="img" aria-label="青海湖畔的油菜花田和远处的雪山">
+          <rect width="640" height="460" fill="#1f1b15"/>
+          <circle cx="478" cy="112" r="44" fill="#e8441c" opacity=".92"/>
+          <path d="M0 300 L168 152 L336 300 Z" fill="#3a332a"/>
+          <path d="M118 300 L300 92 L482 300 Z" fill="#2b251d"/>
+          <path d="M280 122 L300 92 L320 122 L300 134 Z" fill="#f2eee5" opacity=".92"/>
+          <path d="M404 300 L524 182 L644 300 Z" fill="#3a332a"/>
+          <rect y="300" width="640" height="160" fill="#2746d8" opacity=".22"/>
+          <path d="M0 334 H640 M0 370 H640 M0 406 H640" stroke="#f2eee5" stroke-opacity=".13" stroke-width="1"/>
+          <g fill="#c8902a">
+            <circle cx="70" cy="318" r="4"/><circle cx="140" cy="322" r="4"/><circle cx="214" cy="317" r="4"/>
+            <circle cx="392" cy="322" r="4"/><circle cx="470" cy="318" r="4"/><circle cx="566" cy="322" r="4"/>
+          </g>
+        </svg>
+        <div class="town-text">
+          <h3><span class="pin">◉</span> 青藏高原 · 青海</h3>
+          <div class="info-row"><span class="k">位置</span><span class="v">青藏高原，平均海拔 3000 米以上</span></div>
+          <div class="info-row"><span class="k">特色</span><span class="v">湖泊、雪山、油菜花田</span></div>
+          <div class="info-row"><span class="k">代表</span><span class="v">青海湖、茶卡盐湖、祁连山</span></div>
+          <div class="info-row"><span class="k">特产</span><span class="v">老酸奶、牦牛肉干、黑枸杞</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="feature-grid reveal">
+      <div class="feature"><span class="fic">◍</span><h4>高原风光</h4><p>窗外就能望见雪山，青海湖的水蓝得不像话。</p></div>
+      <div class="feature"><span class="fic">◍</span><h4>特色美食</h4><p>以牛羊肉和面食为主，一日三餐都离不开这两样。</p></div>
+      <div class="feature"><span class="fic">◍</span><h4>高原气候</h4><p>天高云淡，早晚凉，一年四季都得备件外套。</p></div>
+      <div class="feature"><span class="fic">◍</span><h4>民族风情</h4><p>多民族住在一起，节日里家家炸馓子、蒸油香。</p></div>
+    </div>
+
+    <div class="food-grid">
+      <article class="food reveal">
+        <div class="art">
+          <svg viewBox="0 0 88 88" aria-hidden="true"><ellipse cx="44" cy="58" rx="30" ry="10" fill="#e8441c" opacity=".85"/><path d="M22 54 q10 -18 22 -14 q12 -4 22 14" stroke="#f2eee5" stroke-width="4" fill="none" stroke-linecap="round"/><circle cx="34" cy="46" r="3" fill="#c8902a"/><circle cx="54" cy="48" r="3" fill="#c8902a"/></svg>
+        </div>
+        <div class="body">
+          <h4>手抓羊肉</h4>
+          <p>肉质紧实没有膻味，蘸一点椒盐，就是高原的味道。</p>
+          <div class="tags food-tags"><span>本地</span><span>招牌</span></div>
+        </div>
+      </article>
+      <article class="food reveal">
+        <div class="art">
+          <svg viewBox="0 0 88 88" aria-hidden="true"><path d="M24 40 h40 l-6 26 h-28 Z" fill="#f2eee5"/><ellipse cx="44" cy="40" rx="20" ry="6" fill="#fffdf8"/><path d="M34 40 q10 5 20 0" stroke="#c8902a" stroke-width="2" fill="none"/></svg>
+        </div>
+        <div class="body">
+          <h4>青海老酸奶</h4>
+          <p>厚得能立住勺子，表面结一层奶皮，酸甜刚刚好。</p>
+          <div class="tags food-tags"><span>酸甜</span><span>经典</span></div>
+        </div>
+      </article>
+      <article class="food reveal">
+        <div class="art">
+          <svg viewBox="0 0 88 88" aria-hidden="true"><g stroke="#c8902a" stroke-width="4" stroke-linecap="round"><path d="M28 30 q16 14 32 0"/><path d="M26 44 q18 14 36 0"/><path d="M28 58 q16 14 32 0"/></g><circle cx="44" cy="44" r="6" fill="#e8441c"/></svg>
+        </div>
+        <div class="body">
+          <h4>馓子与油香</h4>
+          <p>过节才炸，金黄酥脆，一做就是一大盆。</p>
+          <div class="tags food-tags"><span>节日</span><span>手工</span></div>
+        </div>
+      </article>
+    </div>
+
+    <div class="memory-list reveal">
+      <div class="memo"><span class="mic" aria-hidden="true">☀</span><div><h4>高原的夏天</h4><p>太阳落得晚，晚上八九点天还亮着，风里有青草的味道。</p></div></div>
+      <div class="memo"><span class="mic" aria-hidden="true">❄</span><div><h4>大雪的早晨</h4><p>雪下了一整夜，早上推开门，院子里白得晃眼。</p></div></div>
+      <div class="memo"><span class="mic" aria-hidden="true">✿</span><div><h4>过节的厨房</h4><p>馓子和油香从早炸到晚，街坊邻居互相送来送去。</p></div></div>
+    </div>
+  </section>
+
+  <!-- ================= 03 我的作品 ================= -->
+  <section id="works">
+    <div class="eyebrow reveal"><span class="idx">03</span> Works · 我的作品</div>
+    <h2 class="section-title reveal">做过的东西不多，<br>都放在这里。</h2>
+    <p class="section-sub reveal">同一页改了四遍：第一版只有一屏，现在有了导航、交互，还有一块能留言的板子。</p>
+
+    <div class="work-list">
+      <article class="work reveal">
+        <span class="wno">W.01</span>
+        <div>
+          <h3>个人主页 · 第一版</h3>
+          <p>照着盒模型课件做的，一整页往下滚，颜色只有两种。当时觉得能打开就挺成功。</p>
+        </div>
+        <div class="meta"><span class="kind">HTML / CSS</span><span class="state done">已完成</span></div>
+      </article>
+
+      <article class="work reveal">
+        <span class="wno">W.02</span>
+        <div>
+          <h3>个人主页 · 现在这版</h3>
+          <p>加了左侧目录、滚动进度、留言板，手机上也重新排过。改了很多遍才顺眼。</p>
+          <a class="work-link" href="#top">就是你现在看的这页 →</a>
+        </div>
+        <div class="meta"><span class="kind">HTML / CSS / JS</span><span class="state done">已完成</span></div>
+      </article>
+
+      <article class="work reveal">
+        <span class="wno">W.03</span>
+        <div>
+          <h3>学习笔记</h3>
+          <p>记 HTML 和 CSS 的知识点，也记每次踩的坑。padding 和 margin 一开始总分不清。</p>
+        </div>
+        <div class="meta"><span class="kind">笔记</span><span class="state">进行中</span></div>
+      </article>
+
+      <article class="work reveal">
+        <span class="wno">W.04</span>
+        <div>
+          <h3>Python 练习</h3>
+          <p>跟着教程敲的小练习，写得不怎么样，每跑通一个都挺开心。</p>
+          <a class="work-link" href="https://github.com/Muyuna77" target="_blank" rel="noopener">在 GitHub 上看 →</a>
+        </div>
+        <div class="meta"><span class="kind">Python</span><span class="state">进行中</span></div>
+      </article>
+    </div>
+
+    <h3 class="block-title reveal" style="margin-top:56px"><span class="no">NEXT</span>接下来想做的</h3>
+    <div class="plan-grid">
+      <div class="plan reveal"><span class="fic">→</span><h4>把 JavaScript 学完</h4><p>现在只会改样式，事件和数据还想弄明白。</p></div>
+      <div class="plan reveal"><span class="fic">→</span><h4>做一个能用的记事页</h4><p>写进去能存住，刷新不丢就算成功。</p></div>
+      <div class="plan reveal"><span class="fic">→</span><h4>把作品页做完整</h4><p>每件作品配一段过程记录，写清楚怎么改的。</p></div>
+    </div>
+  </section>
+
+  <!-- ================= 04 此刻 ================= -->
+  <section id="now">
+    <div class="eyebrow reveal"><span class="idx">04</span> Now · 此刻在做什么</div>
+    <h2 class="section-title reveal">这一页不写计划，<br>写正在发生的事。</h2>
+    <p class="section-sub reveal">更新于 2026 年 11 月。过一阵子回来改一次，看看有没有往前挪。</p>
+
+    <div class="now-grid reveal">
+      <div class="now-card">
+        <span class="nk">Studying</span>
+        <h4>在学</h4>
+        <p>JavaScript 的事件和 DOM，跟着 MDN 一节一节看，看得慢。</p>
+      </div>
+      <div class="now-card">
+        <span class="nk">Reading</span>
+        <h4>在读</h4>
+        <p>《JavaScript 高级程序设计》，卡在第 3 章，反复看。</p>
+      </div>
+      <div class="now-card">
+        <span class="nk">Practicing</span>
+        <h4>在练</h4>
+        <p>Python 基础题，一天两道，做错的抄一遍在旁边。</p>
+      </div>
+      <div class="now-card">
+        <span class="nk">Listening</span>
+        <h4>在听</h4>
+        <p>一个很旧的民谣歌单，写代码的时候循环一整天。</p>
+      </div>
+    </div>
+
+    <div class="now-lower">
+      <div class="reveal">
+        <h3 class="block-title"><span class="no">C.</span>一点点往前挪</h3>
+        <div class="timeline">
+          <div class="tl">
+            <span class="tl-date">2026 / 09</span>
+            <h4>第一次写 HTML</h4>
+            <p>盒模型那节课印象最深，边框、内边距、外边距画了三遍才记住。</p>
+          </div>
+          <div class="tl">
+            <span class="tl-date">2026 / 10</span>
+            <h4>做出第一版个人主页</h4>
+            <p>只有一屏，五个区块堆在一起，能看到滚动条就很高兴。</p>
+          </div>
+          <div class="tl">
+            <span class="tl-date">2026 / 11</span>
+            <h4>加了导航和交互</h4>
+            <p>点了能跳、能收起来，留言能存住。开始觉得写页面有点像搭积木。</p>
+          </div>
+          <div class="tl now">
+            <span class="tl-date">现在</span>
+            <h4>在啃 JavaScript</h4>
+            <p>想弄明白点击之后到底发生了什么，不想再靠试着改。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="side-note reveal">
+        <h4>手边的东西</h4>
+        <div class="note-row"><span class="k">本子</span><span class="v">一本方格本<small>左边记语法，右边画排版草图</small></span></div>
+        <div class="note-row"><span class="k">编辑器</span><span class="v">VS Code<small>装了中文包，字号调到 16</small></span></div>
+        <div class="note-row"><span class="k">浏览器</span><span class="v">Chrome<small>改一次按 F5，一天按几百次</small></span></div>
+        <div class="note-row"><span class="k">杯子</span><span class="v">保温杯，泡茶<small>高原上得多喝水</small></span></div>
+        <p class="quote">“先把一页做出来，<br>再想怎么做得好看。”</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 05 留言板 ================= -->
+  <section id="board">
+    <div class="eyebrow reveal"><span class="idx">05</span> Board · 留言板</div>
+    <h2 class="section-title reveal">有话想说，<br>就写在这里。</h2>
+
+    <div class="board-grid">
+      <div>
+        <div class="reveal">
+          <div class="contact-item">
+            <span class="c-ic" aria-hidden="true">@</span>
+            <div>
+              <p class="c-k">邮箱 / Mail</p>
+              <p class="c-v"><a href="mailto:2804751287@qq.com">2804751287@qq.com</a>
+                <button type="button" class="mini" id="copyBtn" data-mail="2804751287@qq.com">复制</button>
+              </p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <span class="c-ic" aria-hidden="true">⌂</span>
+            <div>
+              <p class="c-k">GitHub</p>
+              <p class="c-v"><a href="https://github.com/Muyuna77" target="_blank" rel="noopener">github.com/Muyuna77</a></p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <span class="c-ic" aria-hidden="true">◔</span>
+            <div>
+              <p class="c-k">什么时候回</p>
+              <p class="c-v">一般晚上看，周末回得快一些</p>
+            </div>
+          </div>
+        </div>
+
+        <ul class="notice reveal">
+          <li>· 留言只存在这台电脑的浏览器里，换设备就看不到了</li>
+          <li>· 写什么都行，别放身份证号这类隐私</li>
+          <li>· 想单独说的话，直接发邮件更快</li>
+        </ul>
+      </div>
+
+      <form class="msg-form reveal" id="msgForm" novalidate>
+        <h3>给我留言 ✎</h3>
+
+        <label class="field" id="fName">
+          <span class="label-row"><span class="label">你的名字</span></span>
+          <input type="text" id="mName" placeholder="怎么称呼你" maxlength="20" autocomplete="name">
+        </label>
+
+        <label class="field" id="fMail">
+          <span class="label-row"><span class="label">邮箱（可以不填）</span></span>
+          <input type="text" id="mMail" placeholder="方便的话留一个" maxlength="60" autocomplete="email">
+        </label>
+
+        <label class="field">
+          <span class="label-row"><span class="label">主题</span></span>
+          <select id="mTopic">
+            <option>随便聊聊</option>
+            <option>想认识一下</option>
+            <option>问一个网页的问题</option>
+            <option>约球</option>
+          </select>
+        </label>
+
+        <label class="field" id="fText">
+          <span class="label-row">
+            <span class="label">想说的话</span>
+            <span class="counter" id="counter">0 / 200</span>
+          </span>
+          <textarea id="mText" rows="4" placeholder="至少写 5 个字" maxlength="200"></textarea>
+        </label>
+
+        <p class="hint" id="msgHint" role="status" aria-live="polite"></p>
+        <button type="submit" class="send">提交留言 →</button>
+        <p class="tip">留言只保存在你自己的浏览器里，不会真的发出去。</p>
+      </form>
+    </div>
+
+    <div class="msg-section">
+      <div class="msg-head reveal"><h3>留言</h3><span class="msg-count" id="msgCount">0</span></div>
+
+      <div class="msg-tools reveal">
+        <button type="button" class="fchip" data-topic="全部" aria-pressed="true">全部</button>
+        <button type="button" class="fchip" data-topic="随便聊聊" aria-pressed="false">随便聊聊</button>
+        <button type="button" class="fchip" data-topic="想认识一下" aria-pressed="false">想认识一下</button>
+        <button type="button" class="fchip" data-topic="问一个网页的问题" aria-pressed="false">问网页</button>
+        <button type="button" class="fchip" data-topic="约球" aria-pressed="false">约球</button>
+        <button type="button" class="msg-clear" id="clearAll">清空本机留言</button>
+      </div>
+
+      <div class="msg-list" id="msgList"></div>
+      <p class="empty" id="msgEmpty" hidden>还没有留言，来写第一条吧。</p>
+
+      <noscript><p class="empty" style="margin-top:20px">这段留言板要用 JavaScript 才能保存，请在浏览器里打开脚本。</p></noscript>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>© 2026 马伊娜的个人主页 · 第四版 · MADE WITH HTML / CSS / JS</p>
+  <div class="foot-links">
+    <a href="#about">关于我</a>
+    <a href="#hometown">我的家乡</a>
+    <a href="#works">我的作品</a>
+    <a href="#now">此刻</a>
+    <a href="#board">留言板</a>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite">
+  <span id="toastText"></span>
+  <button type="button" id="toastAct" hidden>撤销</button>
+  <button type="button" class="toast-close" id="toastClose" aria-label="关闭提示">×</button>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  var $ = function (sel, root) { return (root || document).querySelector(sel); };
+  var $$ = function (sel, root) { return Array.prototype.slice.call((root || document).querySelectorAll(sel)); };
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- 提示条 ---------- */
+  var toast = $('#toast'), toastText = $('#toastText'), toastAct = $('#toastAct'), toastClose = $('#toastClose');
+  var toastTimer = null, toastAction = null;
+
+  function hideToast() {
+    toast.classList.remove('show');
+    toastAction = null;
+  }
+  function showToast(msg, actionLabel, action) {
+    toastText.textContent = msg;
+    toastAction = action || null;
+    if (actionLabel) {
+      toastAct.hidden = false;
+      toastAct.textContent = actionLabel;
+    } else {
+      toastAct.hidden = true;
+    }
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(hideToast, 4500);
+  }
+  toastAct.addEventListener('click', function () {
+    var fn = toastAction;
+    hideToast();
+    if (typeof fn === 'function') fn();
+  });
+  toastClose.addEventListener('click', hideToast);
+
+  /* ---------- 阅读进度 + 回到顶部 ---------- */
+  var bar = $('#progress'), totop = $('#totop');
+  var navLinks = $$('.rail-nav a, .mnav a');
+  var sections = $$('main section[id]').filter(function (s) { return s.id !== 'top'; });
+
+  function syncNav(currentId) {
+    navLinks.forEach(function (a) {
+      var on = a.getAttribute('href') === '#' + currentId;
+      a.classList.toggle('active', on);
+      if (on) { a.setAttribute('aria-current', 'true'); }
+      else { a.removeAttribute('aria-current'); }
+    });
+  }
+
+  function onScroll() {
+    var doc = document.documentElement;
+    var y = window.pageYOffset || doc.scrollTop || 0;
+    var max = doc.scrollHeight - doc.clientHeight;
+
+    bar.style.transform = 'scaleX(' + (max > 0 ? Math.min(y / max, 1) : 0) + ')';
+    totop.classList.toggle('show', y > 480);
+
+    var line = y + 150;
+    var current = sections.length ? sections[0].id : '';
+    sections.forEach(function (s) {
+      if (s.offsetTop <= line) current = s.id;
+    });
+    if (max > 0 && y >= max - 4 && sections.length) current = sections[sections.length - 1].id;
+    syncNav(current);
+  }
+
+  var ticking = false;
+  function requestScroll() {
+    if (ticking) return;
+    ticking = true;
+    window.requestAnimationFrame(function () { onScroll(); ticking = false; });
+  }
+  window.addEventListener('scroll', requestScroll, { passive: true });
+  window.addEventListener('resize', requestScroll, { passive: true });
+
+  totop.addEventListener('click', function () {
+    window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+  });
+
+  /* ---------- 滚动显现 ---------- */
+  var reveals = $$('.reveal');
+  if ('IntersectionObserver' in window && !reduce) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          e.target.classList.add('in');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -6% 0px' });
+    reveals.forEach(function (el) { io.observe(el); });
+  } else {
+    reveals.forEach(function (el) { el.classList.add('in'); });
+  }
+
+  /* ---------- 移动端菜单 ---------- */
+  var burger = $('#burger'), mnav = $('#mnav');
+
+  function closeNav() {
+    if (!mnav.classList.contains('open')) return;
+    mnav.classList.remove('open');
+    burger.setAttribute('aria-expanded', 'false');
+    burger.setAttribute('aria-label', '打开导航菜单');
+  }
+  burger.addEventListener('click', function () {
+    var open = mnav.classList.toggle('open');
+    burger.setAttribute('aria-expanded', String(open));
+    burger.setAttribute('aria-label', open ? '收起导航菜单' : '打开导航菜单');
+  });
+  $$('#mnav a').forEach(function (a) { a.addEventListener('click', closeNav); });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') { closeNav(); }
+  });
+  window.addEventListener('resize', function () {
+    if (window.innerWidth > 760) closeNav();
+  });
+
+  /* ---------- 时钟 ---------- */
+  var clock = $('#clock');
+  function tick() {
+    var d = new Date();
+    var p = function (n) { return String(n).padStart(2, '0'); };
+    clock.textContent = p(d.getHours()) + ':' + p(d.getMinutes());
+  }
+  tick();
+  setInterval(tick, 20000);
+
+  /* ---------- 今日心情 ---------- */
+  var moods = [
+    '写代码的时候最安静',
+    '打完球吹风最舒服',
+    '今天也把报错调通了',
+    '想回家吃碗老酸奶',
+    '慢慢来，比较快'
+  ];
+  var moodIdx = 0;
+  var moodCard = $('#moodCard'), moodText = $('#moodText');
+  moodCard.addEventListener('click', function () {
+    moodIdx = (moodIdx + 1) % moods.length;
+    moodText.style.opacity = '0';
+    setTimeout(function () {
+      moodText.textContent = moods[moodIdx];
+      moodText.style.opacity = '1';
+    }, 180);
+  });
+
+  /* ---------- 复制邮箱 ---------- */
+  function legacyCopy(text) {
+    try {
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      ta.setAttribute('readonly', '');
+      ta.style.position = 'fixed';
+      ta.style.top = '-1000px';
+      document.body.appendChild(ta);
+      ta.select();
+      ta.setSelectionRange(0, text.length);
+      var ok = document.execCommand('copy');
+      document.body.removeChild(ta);
+      return ok;
+    } catch (err) {
+      return false;
+    }
+  }
+
+  $('#copyBtn').addEventListener('click', function (e) {
+    var btn = e.currentTarget;
+    var mail = btn.dataset.mail;
+    var done = function () {
+      btn.textContent = '已复制';
+      showToast('邮箱已复制到剪贴板');
+      setTimeout(function () { btn.textContent = '复制'; }, 1800);
+    };
+    var fallback = function () {
+      if (legacyCopy(mail)) { done(); return; }
+      showToast('这个浏览器不让自动复制，手动选一下吧：' + mail);
+    };
+
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(mail).then(done).catch(fallback);
+    } else {
+      fallback();
+    }
+  });
+
+  /* ---------- 留言板 ---------- */
+  var KEY = 'muyuna_messages_v2';
+  var OLD_KEY = 'muyuna_messages_v1';
+  var TOPICS = ['全部', '随便聊聊', '想认识一下', '问一个网页的问题', '约球'];
+  var seed = [
+    { name: '阿哲', mail: '', topic: '约球', text: '页面做得挺有感觉，周末打球喊我一个。', time: '2026-11-20 19:42' },
+    { name: '小夏', mail: '', topic: '想认识一下', text: '你好呀，看到你的 GitHub 了，Python 练习我也在练。', time: '2026-11-18 21:07' },
+    { name: '路人', mail: '', topic: '问一个网页的问题', text: '这个背景的纹理是怎么做的？想学。', time: '2026-11-15 12:30' }
+  ];
+
+  var msgList = $('#msgList'), msgCount = $('#msgCount'), msgEmpty = $('#msgEmpty');
+  var msgHint = $('#msgHint'), form = $('#msgForm');
+  var mName = $('#mName'), mMail = $('#mMail'), mTopic = $('#mTopic'), mText = $('#mText');
+  var counter = $('#counter');
+  var filter = '全部';
+  var warned = false;
+
+  function readStore() {
+    try {
+      var raw = localStorage.getItem(KEY);
+      if (raw) {
+        var parsed = JSON.parse(raw);
+        if (Array.isArray(parsed)) return parsed;
+      }
+      var old = localStorage.getItem(OLD_KEY);
+      if (old) {
+        var oldList = JSON.parse(old);
+        if (Array.isArray(oldList)) {
+          localStorage.setItem(KEY, JSON.stringify(oldList));
+          return oldList;
+        }
+      }
+    } catch (err) {
+      return null;
+    }
+    return null;
+  }
+
+  var msgs = readStore();
+  if (!msgs) msgs = seed.slice();
+
+  function persist() {
+    try {
+      localStorage.setItem(KEY, JSON.stringify(msgs));
+      return true;
+    } catch (err) {
+      if (!warned) {
+        warned = true;
+        showToast('浏览器不让保存，这条留言只在本次打开时有效');
+      }
+      return false;
+    }
+  }
+
+  function esc(str) {
+    return String(str).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+
+  function fmtTime(m) {
+    if (!m.ts) return m.time || '';
+    var d = new Date(m.ts), p = function (n) { return String(n).padStart(2, '0'); };
+    return d.getFullYear() + '-' + p(d.getMonth() + 1) + '-' + p(d.getDate()) +
+           ' ' + p(d.getHours()) + ':' + p(d.getMinutes());
+  }
+
+  function removeMsg(m) {
+    var idx = msgs.indexOf(m);
+    if (idx < 0) return;
+    var removed = msgs.splice(idx, 1)[0];
+    persist();
+    renderMsgs();
+    showToast('已删掉这条留言', '撤销', function () {
+      msgs.splice(Math.min(idx, msgs.length), 0, removed);
+      persist();
+      renderMsgs();
+    });
+  }
+
+  function renderMsgs() {
+    var list = filter === '全部' ? msgs : msgs.filter(function (m) { return m.topic === filter; });
+
+    msgCount.textContent = msgs.length;
+    msgList.innerHTML = '';
+    msgEmpty.hidden = list.length > 0;
+
+    if (!list.length) {
+      msgEmpty.textContent = filter === '全部' ? '还没有留言，来写第一条吧。' : '这个主题下还没有留言。';
+    }
+
+    list.forEach(function (m) {
+      var el = document.createElement('article');
+      el.className = 'msg';
+      el.innerHTML =
+        '<div class="msg-top">' +
+          '<span class="msg-name">' + esc(m.name) + '</span>' +
+          '<span class="msg-topic">' + esc(m.topic) + '</span>' +
+        '</div>' +
+        '<p class="msg-text">' + esc(m.text) + '</p>' +
+        '<div class="msg-meta">' +
+          '<span>' + esc(fmtTime(m)) + '</span>' +
+          '<button type="button" class="msg-del">删除</button>' +
+        '</div>';
+      el.querySelector('.msg-del').addEventListener('click', function () { removeMsg(m); });
+      msgList.appendChild(el);
+    });
+  }
+
+  /* 筛选 */
+  $$('.fchip').forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      filter = chip.dataset.topic;
+      $$('.fchip').forEach(function (c) {
+        c.setAttribute('aria-pressed', String(c === chip));
+      });
+      renderMsgs();
+    });
+  });
+
+  /* 清空 */
+  $('#clearAll').addEventListener('click', function () {
+    if (!msgs.length) { showToast('现在还没有留言'); return; }
+    var backup = msgs.slice();
+    msgs = [];
+    persist();
+    renderMsgs();
+    showToast('本机留言已清空', '撤销', function () {
+      msgs = backup;
+      persist();
+      renderMsgs();
+    });
+  });
+
+  /* 字数统计 */
+  function updateCounter() {
+    counter.textContent = mText.value.length + ' / 200';
+  }
+  mText.addEventListener('input', updateCounter);
+  updateCounter();
+
+  /* 校验 */
+  function markField(id, bad) {
+    var f = $('#' + id);
+    if (f) f.classList.toggle('bad', !!bad);
+  }
+  function clearMarks() {
+    markField('fName', false);
+    markField('fMail', false);
+    markField('fText', false);
+  }
+  function say(text) { msgHint.textContent = text; }
+
+  form.addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    clearMarks();
+
+    var name = mName.value.trim();
+    var mail = mMail.value.trim();
+    var text = mText.value.trim();
+
+    if (!name) {
+      say('先留个称呼吧。');
+      markField('fName', true);
+      mName.focus();
+      return;
+    }
+    if (mail && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mail)) {
+      say('邮箱格式好像不太对，也可以留空。');
+      markField('fMail', true);
+      mMail.focus();
+      return;
+    }
+    if (text.length < 5) {
+      say('想说的话至少写 5 个字。');
+      markField('fText', true);
+      mText.focus();
+      return;
+    }
+
+    msgs.unshift({ name: name, mail: mail, topic: mTopic.value, text: text, ts: Date.now() });
+    persist();
+    if (filter !== '全部' && filter !== mTopic.value) {
+      filter = '全部';
+      $$('.fchip').forEach(function (c) {
+        c.setAttribute('aria-pressed', String(c.dataset.topic === '全部'));
+      });
+    }
+    renderMsgs();
+
+    form.reset();
+    updateCounter();
+    say('留言已记下，谢谢！');
+    setTimeout(function () { if (msgHint.textContent === '留言已记下，谢谢！') say(''); }, 2600);
+  });
+
+  [mName, mMail, mText].forEach(function (el) {
+    el.addEventListener('input', function () {
+      el.parentNode.classList.remove('bad');
+    });
+  });
+
+  renderMsgs();
+  onScroll();
+})();
+</script>
+</body>
+</html>
